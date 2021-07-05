@@ -1,26 +1,23 @@
-import React, {useState, useEffect} from 'react';
-import {View, TextInput, SafeAreaView} from 'react-native';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, SafeAreaView } from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { useNavigation } from '@react-navigation/native';
 import styles from './styles.js';
 import PlaceRow from './PlaceRow';
 
 const homePlace = {
   description: 'Home',
-  geometry: {location: {lat: 10.769006789562528, lng: 106.59386021130058}},
+  geometry: { location: { lat: 10.769006789562528, lng: 106.59386021130058 } },
 };
 const workPlace = {
   description: 'Work',
-  geometry: {location: {lat: 10.774666780343463, lng: 106.68818160080741}},
+  geometry: { location: { lat: 10.774666780343463, lng: 106.68818160080741 } },
 };
 
-const DestinationSearch = props => {
-  const [originPlace, setOriginPlace] = useState([
-    10.769006789562528, 106.59386021130058,
-  ]);
-  const [destinationPlace, setDestinationPlace] = useState([
-    10.774666780343463, 106.68818160080741,
-  ]);
+const DestinationSearch = props =>
+{
+  const [originPlace, setOriginPlace] = useState(null);
+  const [destinationPlace, setDestinationPlace] = useState(null);
   // place Nhà
   const origin = {
     latitude: 10.7763895490359,
@@ -32,9 +29,11 @@ const DestinationSearch = props => {
     longitude: 106.59802855737091,
   };
   const navigation = useNavigation();
-
-  const checkNavigation = () => {
-    if (origin && destination) {
+  // test location
+  const checkNavigation = () =>
+  {
+    if (origin && destination)
+    {
       navigation.navigate('SearchResults', {
         origin,
         destination,
@@ -42,8 +41,22 @@ const DestinationSearch = props => {
     }
   };
 
+  // const checkNavigation = () =>
+  // {
+  //   if (originPlace && destinationPlace)
+  //   {
+  //     navigation.navigate('SearchResults', {
+  //       originPlace,
+  //       destinationPlace,
+  //     });
+  //   }
+  // };
+
+
+
   console.log(origin.latitude, origin.longitude);
-  useEffect(() => {
+  useEffect(() =>
+  {
     checkNavigation();
   }, [originPlace, destinationPlace]);
 
@@ -52,8 +65,9 @@ const DestinationSearch = props => {
       <View style={styles.container}>
         <GooglePlacesAutocomplete
           placeholder="Where from?"
-          onPress={(data, details = null) => {
-            setOriginPlace({data, details});
+          onPress={(data, details = null) =>
+          {
+            setOriginPlace({ data, details });
           }}
           enablePoweredByContainer={false}
           suppressDefaultStyles
@@ -77,8 +91,9 @@ const DestinationSearch = props => {
 
         <GooglePlacesAutocomplete
           placeholder="Where to?"
-          onPress={(data, details = null) => {
-            setDestinationPlace({data, details});
+          onPress={(data, details = null) =>
+          {
+            setDestinationPlace({ data, details });
           }}
           enablePoweredByContainer={false}
           s
