@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   iconContainer: {
     backgroundColor: '#b3b3b3',
     padding: 10,
-    borderRadius: 25,
+    borderRadius: 20,
+    height: 40,
   },
   row: {
     flexDirection: 'row',
